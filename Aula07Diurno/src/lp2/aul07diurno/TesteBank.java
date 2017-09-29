@@ -26,6 +26,7 @@ public class TesteBank {
         System.out.println("Bonificacao: "+f2.getBonificacao());
         c.registrarBonificacao(f2);
         System.out.println("Total de Bonificacao:"+c.getTotalBonificacao());
+        System.out.println("");
     }
 
 }
