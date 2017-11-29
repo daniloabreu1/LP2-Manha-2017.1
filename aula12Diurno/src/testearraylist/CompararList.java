@@ -2,63 +2,109 @@ package testearraylist;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Vector;
 
 public class CompararList {
 
-    static ArrayList arrayList = new ArrayList();
-    static LinkedList linkedList = new LinkedList();
-    static Vector vectorlist = new Vector();
-
-    public static double addTest(List l) {
-        double startTime = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
-            l.add("A"+i);
-        }
-        double endTime = System.currentTimeMillis();
-        double duration = endTime - startTime;
-        return duration;
-    }
-
-    ;
-    public static double getTest(List l) {
-        double startTime = System.currentTimeMillis();
-        for (int i = 0; i < l.size(); i++) {
-            l.get(i);
-        }
-        double endTime = System.currentTimeMillis();
-        double duration = endTime - startTime;
-        return duration;
-    }
-
-    ;
-    public static double removeTest(List l) {
-        double startTime = System.currentTimeMillis();
-        int i=0;
-        while(l.size()>0){
-            l.remove(l.get(i));
-        }
-        double endTime = System.currentTimeMillis();
-        double duration = endTime - startTime;
-        return duration;
-    }
-
-    ;
     public static void main(String args[]) {
 
-        System.out.println("TAM: "+arrayList.size()+"\t| "+"ArrayList add:\t" + (addTest(arrayList) / 1000) + " segundos"+"\t| TAM: "+arrayList.size());
-        System.out.println("TAM: "+linkedList.size()+"\t| "+"LinkedList add:\t" + (addTest(linkedList) / 1000) + " segundos"+"\t| TAM: "+linkedList.size());
-        System.out.println("TAM: "+vectorlist.size()+"\t| "+"Vector add:\t\t" + (addTest(vectorlist) / 1000) + " segundos"+"\t| TAM: "+vectorlist.size());
+        final int TAM;
+        TAM = 100000;
+        int cont;
+        ArrayList arrayList = new ArrayList();
+        LinkedList linkedList = new LinkedList();
+        Vector vectorlist = new Vector();
+
+        double startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + arrayList.size() + "\t\t| ");
+        for (int i = 0; i < TAM; i++) {
+            arrayList.add(i);
+        }
+        double endTime = System.currentTimeMillis();
+        double duration = endTime - startTime;
+        System.out.println("ArrayList add:\t" + (duration / 1000) + " segundos" + "\t| TAM: " + arrayList.size());
+
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + linkedList.size() + "\t\t| ");
+        for (int i = 0; i < TAM; i++) {
+            linkedList.add(i);
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("LinkedList add:\t" + (duration / 1000) + " segundos" + "\t| TAM: " + linkedList.size());
+
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + vectorlist.size() + "\t\t| ");
+        for (int i = 0; i < TAM; i++) {
+            vectorlist.add(i);
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("Vector add:\t\t" + (duration / 1000) + " segundos" + "\t| TAM: " + vectorlist.size());
         System.out.println();
 
-        System.out.println("ArrayList get:\t " + (getTest(arrayList) / 1000) + " segundos");
-        System.out.println("LinkedList get:\t " + (getTest(linkedList) / 1000) + " segundos");
-        System.out.println("Vector get:\t " + (getTest(vectorlist) / 1000) + " segundos");
+        cont = 0;
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + arrayList.size() + "\t| ");
+        for (int i = 0; i < TAM; i++) {
+            arrayList.get(i);
+            cont++;
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("ArrayList get:\t" + (duration / 1000) + " segundos" + "\t|iterações: " + cont);
+
+        cont = 0;
+
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + linkedList.size() + "\t| ");
+        for (int i = 0; i < TAM; i++) {
+            linkedList.get(i);
+            cont++;
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("LinkedList get:\t" + (duration / 1000) + " segundos" + "\t|iterações: " + cont);
+
+        cont = 0;
+
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + vectorlist.size() + "\t| ");
+        for (int i = 0; i < TAM; i++) {
+            vectorlist.get(i);
+            cont++;
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("Vector get:\t\t" + (duration / 1000) + " segundos" + "\t|iterações: " + cont);
         System.out.println();
 
-        System.out.println("TAM: "+arrayList.size()+"\t| "+"ArrayList remove:\t" + (removeTest(arrayList) / 1000) + " segundos"+"\t| TAM: "+arrayList.size());
-        System.out.println("TAM: "+linkedList.size()+"\t| "+"LinkedList remove:\t" + (removeTest(linkedList) / 1000) + " segundos"+"\t| TAM: "+linkedList.size());
-        System.out.println("TAM: "+vectorlist.size()+"\t| "+"Vector remove:\t" + (removeTest(vectorlist) / 1000) + " segundos"+"\t| TAM: "+vectorlist.size());
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + arrayList.size() + "\t| ");
+        for (int i = (arrayList.size() - 1); i >= 0; i--) {
+            arrayList.remove(i);
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("ArrayList remove:\t" + (duration / 1000) + " segundos" + "\t| TAM: " + arrayList.size());
+
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + linkedList.size() + "\t| ");
+        for (int i = (linkedList.size() - 1); i >= 0; i--) {
+            linkedList.remove(i);
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("LinkedList remove:\t" + (duration / 1000) + " segundos" + "\t| TAM: " + linkedList.size());
+
+        startTime = System.currentTimeMillis();
+        System.out.print("TAM: " + vectorlist.size() + "\t| ");
+        for (int i = (vectorlist.size() - 1); i >= 0; i--) {
+            vectorlist.remove(i);
+        }
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println("Vector remove:\t" + (duration / 1000) + " segundos" + "\t| TAM: " + vectorlist.size());
+
     }
 }
